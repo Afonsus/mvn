@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- start 服务器配置 -->
+	<bean id="serverTestDev" class="cn.mxcorp.mvntest.ServerProps">
+		<property name="serverName" value="test99" />
+		<property name="serverId" value="1" />
+		<property name="serverDesc" value="内部Dev服务器" />
+		<property name="ip" value="http://172.16.1.99:8080" />
+		<property name="rootUrl" value="/GodServer/gmOni" />
+	</bean>
+	<bean id="serverTestAlpha" class="cn.mxcorp.mvntest.ServerProps">
+		<property name="serverName" value="test100" />
+		<property name="serverId" value="2" />
+		<property name="serverDesc" value="内部100服务器" />
+		<property name="ip" value="http://172.16.1.100:8080" />
+		<property name="rootUrl" value="/GodServer/gmOni" />
+	</bean>
+	<bean id="serverTestBeta1" class="cn.mxcorp.mvntest.ServerProps">
+		<property name="serverName" value="testBeta1" />
+		<property name="serverId" value="1" />
+		<property name="serverDesc" value="beta一区" />
+		<property name="ip" value="http://172.16.1.62:8080" />
+		<property name="rootUrl" value="/GodServer/gmOni" />
+	</bean>
+	<bean id="serverTestBeta2" class="cn.mxcorp.mvntest.ServerProps">
+		<property name="serverName" value="testBeta2" />
+		<property name="serverId" value="2" />
+		<property name="serverDesc" value="beta二区" />
+		<property name="ip" value="http://172.16.1.63:8080" />
+		<property name="rootUrl" value="/GodServer/gmOni" />
+	</bean>
+	<!-- end 服务器配置 -->
+
+
+	<!-- start 数据库配置 -->
+	<bean id="abstractDataSrouceProps" abstract="true"
+		class="cn.mxcorp.mvntest.DataSourceProps">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://172.16.1.99/GodLog?useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="userName" value="youbang" />
+		<property name="passWord" value="ymysql0303" />
+
+		<property name="databaseType" value="Logs" />
+		<property name="enable" value="true" />
+	</bean>
+	<bean parent="abstractDataSrouceProps">
+		<property name="server" ref="serverTestDev" />
+	</bean>
+	<bean parent="abstractDataSrouceProps">
+		<property name="server" ref="serverTestAlpha" />
+	</bean>
+	<bean parent="abstractDataSrouceProps">
+		<property name="url"
+			value="jdbc:mysql://172.16.1.67/OniLog1?useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="server" ref="serverTestBeta1" />
+	</bean>
+	<bean parent="abstractDataSrouceProps">
+		<property name="url"
+			value="jdbc:mysql://172.16.1.67/OniLog2?useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="server" ref="serverTestBeta2" />
+	</bean>
+	<!-- end 数据库配置 -->
+</beans>
