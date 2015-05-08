@@ -12,7 +12,7 @@ public class ServerProps implements Serializable {
     private String serverName;
     private Integer serverId;
     private String serverDesc;
-    private String ip;
+    private String ip; 
     private String rootUrl;
 
     public String getIp() {
