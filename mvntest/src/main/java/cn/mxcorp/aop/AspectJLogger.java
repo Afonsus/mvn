@@ -26,17 +26,17 @@ public class AspectJLogger {
 	public static final String EDP = "execution(* cn.mxcorp.aop.CommonEmployee.*(String))";// 匹配指定参数类型的所有方法
 	public static final String EDP1 = "within(cn.mxcorp.aop.*)";
 
-	// @Before(EDP)
-	// // spring中Before通知
-	// public void logBefore() {
-	// System.out.println("logBefore:现在时间是:" + new Date());
-	// }
-	//
-	// @After(EDP)
-	// // spring中After通知
-	// public void logAfter() {
-	// System.out.println("logAfter:现在时间是:" + new Date());
-	// }
+	@Before(EDP)
+	// spring中Before通知
+	public void logBefore() {
+		System.out.println("logBefore:现在时间是:" + new Date());
+	}
+
+	@After(EDP)
+	// spring中After通知
+	public void logAfter() {
+		System.out.println("logAfter:现在时间是:" + new Date());
+	}
 
 	@Around(EDP)
 	// spring中Around通知

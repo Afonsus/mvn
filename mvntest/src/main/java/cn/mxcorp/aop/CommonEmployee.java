@@ -34,7 +34,8 @@ public class CommonEmployee {
 		return new CommonEmployee(x);
 	}
 
-	public void logOut(String x) {
+	public int logOut(String x) {
 		System.out.println(name + "已经登出了...........");
+		return 3;
 	}
 }
